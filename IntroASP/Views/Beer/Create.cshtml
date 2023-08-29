@@ -1,0 +1,47 @@
+﻿@using IntroASP.Models.View_Models
+@model BeerViewModel
+<h1>
+    Crear Cerveza
+</h1>
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-4">
+        @*el formulario hara un post a BrandController > Create por el metodo post
+            Validara solo el modelo BeerViewModel el Name
+            el Label traera la información de Name y como colocamos el [Display] lo cambiara a Nombre en BearViewModel
+        *@ 
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            @*Se relaciona con nuestro modelo de BrandController > Create del metodo Post y trae Brands del ViewData["Brands"]
+                usando ViewBag.Brands
+            *@
+            <div class="form-group">
+                <label asp-for="BrandId" class="control-label"></label>
+                <select asp-for="BrandId" class="form-control" asp-items="ViewBag.Brands"></select>
+                <span asp-validation-for="BrandId" class="text-danger"></span>
+            </div>
+
+            <div>
+                <input type="submit" value="Crear" class="btn btn-primary"/>
+            </div>
+
+        </form>
+    </div>
+</div>
+@*Coloca toda esta sección del apartado RenderSectionAsync Scripts de Shared > _Layout
+    Renderiza parcialmente las validaciones con el archivo Jquery de Shared > _ValidationScriptsPartial 
+*@ 
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

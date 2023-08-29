@@ -1,0 +1,43 @@
+Los modelos es una representación de una identidad.
+Una clase por cada tabla
+
+NOTA: Debe estar creada la base de datos con anterioridad, solo vamos a extrar las tablas como clases a ASP.Net
+
+Se conecta a la base de datos y extrae las tablas y crea en modelo
+
+Scaffold-DbContext "Server=DESKTOP-SGFRJH9; Database=Pub; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+Si cambio la base de datos es para reflejar esos cambios en nuestro programa
+
+Scaffold-DbContext "Server=DESKTOP-SGFRJH9; Database=Pub; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+controladores, El In y el Out que hace algo para el usuario y controla el flujo
+
+Razor : Es solo una fusión de HTML con C# para poder insertar datos y hacerla de forma mas dinamica
+
+Añado un Controlador para hacer algo y le añado una vista Index (razor) solo dando click derecho y New View
+Si marca un error debo ir a la carpeta de View y añadir la carpeta con el mismo nombre 
+"BrandController" > "Brand" > Index.cshtml
+
+el @{} sirve para colocar codigo c# en los ducumentos de las vistas "Index.cshtml"
+
+asp-area="" asp-controller="Brand" asp-action="Index"
+
+Es unas claves que van en las etiquetas del as vistas:
+asp-area:
+asp-controller: va el nombre del controlador para que haga algo
+asp-action: va a llamar la funcion(metodo) de la clase donde este el controlador uqe previamente llamamos
+En resumen llamara al controlador "BrandController" y ejecutara la función Index()
+
+------------------------------------------------------------------------------------
+Para crear una tabla en cierta base de datos en la consola escribimos:
+add-migration AddCategoryToDatabase
+Esta linea solo funcionara si los hacemos en la modalidad Code-First
+
+Para usar los comandos debimos instalar 
+Microsoft.EntityFrameworkCore.Tools
+
+Al usar el comando de migracion se creara una carpeta 'Migrations'
+
+update-database 
+Sirve para reflejar los cambios en la base de datos
